@@ -116,6 +116,36 @@ width: 400px;
     background-color:white;
 }
 .imgGive{
-    height: 44em;
-    width: 80%;    
+    height: 30em;
+    width: 60%;    
 }
+.column {
+    float: left;
+    width: 10%;
+    height: 10%;
+  }
+  .column {
+    float: left;
+    width: 10%;
+    height: 10%;
+    padding: 0 21em;
+  }
+  /* Clear floats after the columns */
+  .row{
+    height: 10em;
+    margin-top: -13em;
+  }
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .phone{
+    height: 8em;
+    width: 10em;
+    margin-top: -1.5em;
+  }
+  .visa{
+    height: 7em;
+    width: 7em;
+  }
