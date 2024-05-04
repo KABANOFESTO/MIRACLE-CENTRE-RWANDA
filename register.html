@@ -100,7 +100,7 @@
 				redirect: 'follow'
 			};
 
-			fetch("users/signUp", requestOptions)
+			fetch("https://church-backend-1.onrender.com/users/signup", requestOptions)
 				.then(response => response.json())
 				.then(result => {
 					console.log(result)
