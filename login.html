@@ -27,11 +27,11 @@
 					<form id="loginForm">
 						<div class="form-input">
 							<span><i class="fa fa-envelope"></i></span>
-							<input type="email" id="email" placeholder="Email Address"  required>
+							<input type="email" id="email" placeholder="Email Address" required>
 						</div>
 						<div class="form-input">
 							<span><i class="fa fa-lock"></i></span>
-							<input type="password" id="pwd" placeholder="Password"  required>
+							<input type="password" id="pwd" placeholder="Password" required>
 						</div>
 						<div class="row mb-3">
 							<div class="col-6 d-flex">
@@ -76,7 +76,42 @@
 		</div>
 	</div>
 	<script>
+		document.getElementById('loginForm').addEventListener('submit', (e) => {
+			e.preventDefault();
 
+			const email = document.getElementById("email").value;
+			const password = document.getElementById("pwd").value;
+
+			let myHeaders = new Headers();
+			myHeaders.append("Conent-type", "application/json");
+
+			let raw = JSON.stringify({
+				"email": email,
+				"password": password
+			});
+			let requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+			};
+			fetch("https://church-backend-1.onrender.com/users/login", requestOptions)
+				.then(response => response.json())
+				.then(result => {
+					console.log(result)
+					if (result.success) {
+						localStorage.setItem("loginedUser", JSON.stringify(result.user));
+						if (result.user.role == "admin") {
+							window.open("contact.html", "_self");
+						} else {
+							location.href = './index.html';
+						}
+					} else {
+						alert(result.message)
+					}
+				})
+				.catch(error => console.log('error', error));
+		})
 	</script>
 </body>
 
